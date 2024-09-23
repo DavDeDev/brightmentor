@@ -1,20 +1,35 @@
 "use client"
-import { ChevronUp, ChevronDown, Plus } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger
+} from "@/components/ui/dialog"
+import { cohorts as initialCohorts } from "@/data/cohorts"
+import { ChevronDown, ChevronUp, Plus } from "lucide-react"
 import { useState } from "react"
+import CreateCohortForm from "./add-cohort-form"
 import CohortCard, { Cohort } from "./cohort-card"
-import {cohorts as initialCohorts} from "@/data/cohorts"
 
 function AddNewCard({ onAddNew }: { onAddNew: () => void }) {
   return (
-    <div 
-      className="relative aspect-square overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 bg-gray-100 flex items-center justify-center cursor-pointer"
-      onClick={onAddNew}
-    >
-      <Plus size={48} className="text-gray-400" />
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        <h3 className="text-gray-600 text-xl font-bold text-center">Add New Cohort</h3>
-      </div>
-    </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <div
+          className="relative aspect-square overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 bg-gray-100 flex items-center justify-center cursor-pointer"
+          onClick={onAddNew}
+        >
+          <Plus size={48} className="text-gray-400" />
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-gray-600 text-xl font-bold text-center">Add New Cohort</h3>
+          </div>
+        </div>
+      </DialogTrigger>
+      <DialogContent className="overflow-y-scroll max-h-screen">
+        <DialogHeader>Create New Cohort </DialogHeader>
+        <CreateCohortForm />
+      </DialogContent>
+    </Dialog>
   )
 }
 
@@ -25,7 +40,7 @@ export default function Component() {
   const addNewCohort = () => {
     const newCohort: Cohort = {
       id: cohorts.length + 1,
-      name: `New Cohort ${cohorts.length + 1}`,
+      coordinator: `New Cohort ${cohorts.length + 1}`,
       semester: "Upcoming",
       image: "/placeholder.svg?height=300&width=300",
       mentees: 0,

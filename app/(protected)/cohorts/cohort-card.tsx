@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 export interface Cohort {
   id: number
-  name: string
+  coordinator: string
   semester: string
   image: string
   mentees: number
@@ -25,7 +25,7 @@ export default function CohortCard({ cohort, onAction }: { cohort: Cohort; onAct
 
   return (
     <div className="cursor-pointer group relative aspect-square overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
-      <img src={cohort.image} alt={cohort.name} className="w-full h-full object-cover" />
+      <img src={cohort.image} alt={cohort.coordinator} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary opacity-70"></div>
       <div className="absolute top-2 left-2 flex flex-col items-start space-y-2">
         <Badge className="py-1 gap-1" title={`${cohort.mentors} Mentors`}>
@@ -38,8 +38,8 @@ export default function CohortCard({ cohort, onAction }: { cohort: Cohort; onAct
         </Badge>
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-4 transition-all duration-300 ease-in-out group-hover:-translate-y-2">
-        <h3 className=" text-xl font-bold">{cohort.name}</h3>
-        <p className=" text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">{cohort.semester}</p>
+        <h3 className=" text-xl font-bold">{cohort.semester}</h3>
+        <p className=" text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">{cohort.coordinator}</p>
       </div>
       <div className="absolute bottom-2 right-2 transition-opacity duration-300">
         <DropdownMenu>
@@ -49,7 +49,7 @@ export default function CohortCard({ cohort, onAction }: { cohort: Cohort; onAct
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="min-w-[200px] rounded-md shadow-lg p-1" sideOffset={5}>
-            <DropdownMenuItem  onSelect={() => onAction('addMembers', cohort.id)}>
+            <DropdownMenuItem onSelect={() => onAction('addMembers', cohort.id)}>
               <UserPlus size={16} className="mr-2" />
               Add Members
             </DropdownMenuItem>
@@ -64,7 +64,7 @@ export default function CohortCard({ cohort, onAction }: { cohort: Cohort; onAct
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator className="" />
-            <DropdownMenuItem className=" text-destructive bg-destructive-foreground" onSelect={() => onAction('leave', cohort.id)}>
+            <DropdownMenuItem className=" text-destructive" onSelect={() => onAction('leave', cohort.id)}>
               <LogOut size={16} className="mr-2" />
               Leave Cohort
             </DropdownMenuItem>
