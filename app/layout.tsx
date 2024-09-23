@@ -1,12 +1,6 @@
-import DeployButton from "@/components/deploy-button";
-import { SiteHeader } from "@/components/site-header";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
-import Link from "next/link";
 import "./globals.css";
-import Hero from "@/components/hero";
-import { SiteFooter } from "@/components/site-footer";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -32,9 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader/>
-          <Hero/>
-          <SiteFooter/> 
+          {children}
         </ThemeProvider>
       </body>
     </html>
