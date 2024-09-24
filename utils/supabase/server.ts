@@ -10,6 +10,7 @@ export const createClient = () => {
     {
       cookies: {
         getAll() {
+          // console.log(cookieStore.getAll());
           return cookieStore.getAll();
         },
         setAll(cookiesToSet) {

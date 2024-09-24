@@ -37,8 +37,8 @@ function AddNewCard({ onAddNew }: { onAddNew: () => void }) {
           <CreateCohortForm />
         </ScrollArea>
         <DialogFooter className="container">
-          <Button variant="secondary">Reset all filters</Button>
-          <Button>Apply filters</Button>
+          <Button variant="secondary">Reset</Button>
+          <Button>Create!</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

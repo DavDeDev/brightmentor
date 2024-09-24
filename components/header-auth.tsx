@@ -8,7 +8,9 @@ export default async function AuthButton() {
     data: { user },
   } = await createClient().auth.getUser();
 
- 
+ const {data : session} = await createClient().auth.getSession();
+ console.log("session");
+ console.log(session);
   return user ? (
     <div className="flex items-center gap-4">
       Hey, {user.email}!

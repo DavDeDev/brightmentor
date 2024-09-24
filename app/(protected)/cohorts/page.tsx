@@ -1,8 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
-import { cohorts } from "@/data/cohorts";
-import CohortGrid from "./cohort-grid";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import CohortGrid from "./cohort-grid";
 
 export default async function Index() {
   const supabase = createClient();
@@ -18,7 +17,7 @@ export default async function Index() {
   return (
     <>
        <SiteHeader/>
-       <CohortGrid cohorts={cohorts}/>
+       <CohortGrid/>
     </>
   );
 }
