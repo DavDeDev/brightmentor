@@ -2,21 +2,25 @@
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog"
 import { cohorts as initialCohorts } from "@/data/cohorts"
 import { ChevronDown, ChevronUp, Plus } from "lucide-react"
 import { useState } from "react"
 import CreateCohortForm from "./add-cohort-form"
-import CohortCard, { Cohort } from "./cohort-card"
+import CohortCard, { type Cohort } from "./cohort-card"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 function AddNewCard({ onAddNew }: { onAddNew: () => void }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div
-          className="relative aspect-square overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 bg-gray-100 flex items-center justify-center cursor-pointer"
+      <div
+          className="relative aspect-square rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 bg-gray-100 flex items-center justify-center cursor-pointer"
           onClick={onAddNew}
         >
           <Plus size={48} className="text-gray-400" />
@@ -25,9 +29,17 @@ function AddNewCard({ onAddNew }: { onAddNew: () => void }) {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="overflow-y-scroll max-h-screen">
-        <DialogHeader>Create New Cohort </DialogHeader>
-        <CreateCohortForm />
+      <DialogContent className="max-h-fit px-0">
+        <DialogHeader className="px-4">
+          <DialogTitle>Create Cohort</DialogTitle>
+        </DialogHeader>
+      <ScrollArea className="container max-h-[80vh] ">
+          <CreateCohortForm />
+        </ScrollArea>
+        <DialogFooter className="container">
+          <Button variant="secondary">Reset all filters</Button>
+          <Button>Apply filters</Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

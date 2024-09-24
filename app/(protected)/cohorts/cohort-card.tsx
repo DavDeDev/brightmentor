@@ -26,7 +26,7 @@ export default function CohortCard({ cohort, onAction }: { cohort: Cohort; onAct
   return (
     <div className="cursor-pointer group relative aspect-square overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
       <img src={cohort.image} alt={cohort.coordinator} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary opacity-70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary opacity-70"/>
       <div className="absolute top-2 left-2 flex flex-col items-start space-y-2">
         <Badge className="py-1 gap-1" title={`${cohort.mentors} Mentors`}>
           <User size={14} />

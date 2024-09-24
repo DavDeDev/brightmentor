@@ -7,8 +7,17 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { PlusCircle, X } from 'lucide-react'
+import { ScrollBar, ScrollArea } from '@/components/ui/scroll-area'
 
 const predefinedImages = [
+  'https://images.unsplash.com/photo-1722969196093-0624ce9f0ad4?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'https://plus.unsplash.com/premium_photo-1673977827860-107a79dd8e8b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
+  'https://images.unsplash.com/photo-1723104269830-062023d3e7d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
+  'https://plus.unsplash.com/premium_photo-1721314157041-4d7a484822fa?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
+   'https://images.unsplash.com/photo-1722969196093-0624ce9f0ad4?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'https://plus.unsplash.com/premium_photo-1673977827860-107a79dd8e8b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
+  'https://images.unsplash.com/photo-1723104269830-062023d3e7d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
+  'https://plus.unsplash.com/premium_photo-1721314157041-4d7a484822fa?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
   'https://images.unsplash.com/photo-1722969196093-0624ce9f0ad4?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   'https://plus.unsplash.com/premium_photo-1673977827860-107a79dd8e8b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
   'https://images.unsplash.com/photo-1723104269830-062023d3e7d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8fA%3D%3D',
@@ -55,15 +64,12 @@ export default function CreateCohortForm() {
   }
 
   return (
-    <>
-      <CardHeader>
-        <CardTitle>Create New Cohort</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+    
+        <form onSubmit={handleSubmit} className="mx-2  space-y-6">
           <div className="space-y-2">
             <Label htmlFor="cohort-image">Cohort Image</Label>
-            <div className="flex space-x-2">
+            <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
+            <div className="flex w-max space-x-4 p-4">
               {predefinedImages.map((image, index) => (
                 <img
                   key={index}
@@ -75,7 +81,9 @@ export default function CreateCohortForm() {
                   onClick={() => setSelectedImage(image)}
                 />
               ))}
-            </div>
+               </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
           </div>
 
           <div className="space-y-2">
@@ -149,10 +157,5 @@ export default function CreateCohortForm() {
             </Button>
           </div>
         </form>
-      </CardContent>
-      <CardFooter>
-        <Button type="submit" className="w-full">Create Cohort</Button>
-      </CardFooter>
-    </>
   )
 }
